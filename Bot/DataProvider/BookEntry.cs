@@ -27,6 +27,8 @@ namespace Bot.DataProvider
             public bool IsFullPair => Ask != null && Bid != null;
 
             public decimal? PriceSpread => IsFullPair ? Ask - Bid : default(decimal?);
+            public decimal? NegativeSpread => IsFullPair ? Bid - Ask : default(decimal?);
+
             public decimal? MediumPrice => IsFullPair ? (Ask + Bid) / 2 : default(decimal?);
 
     }
