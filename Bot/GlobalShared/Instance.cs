@@ -145,7 +145,6 @@ namespace MaMa.HFT.Console.GlobalShared
             //{
             //    this.RemoveAllDirectionOrder(Binance.Net.Objects.OrderSide.Buy);
             //    this.RemoveAllDirectionOrder(Binance.Net.Objects.OrderSide.Sell);
-            //    //Quote quote = new Quote(decimal.Round(obj.BestAskPrice, 2), decimal.Round(.0022m, 4), OrderSide.Buy, decimal.Round(obj.BestBidPrice, 2));
 
             //    this.PlaceOrder("BTCUSDT", Binance.Net.Objects.OrderSide.Sell, Binance.Net.Objects.OrderType.Limit, decimal.Round(.0022m, 4), decimal.Round(MediumPrice.Value, 2));
             //    this.PlaceOrder("BTCUSDT", Binance.Net.Objects.OrderSide.Buy, Binance.Net.Objects.OrderType.Limit, decimal.Round(.0022m, 4), decimal.Round(obj.BestBidPrice, 2));
