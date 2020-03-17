@@ -99,14 +99,6 @@ namespace MaMa.HFT.Console.GlobalShared
 
             BookEntry Entry = new BookEntry(BestAsk[0].Price, BestBid[0].Price, obj.LastUpdateId);
 
-            //Logger.Info($"Best ask / bid: {BestAsk[0].Price} / {marketPair.Bid.Price}. Update Id: {marketPair.UpdateTime}.");
-
-            //// get price spreads (in percent)
-            //decimal actualSpread = marketPair.PriceSpread.Value / marketPair.MediumPrice.Value * 100; // spread_relative = spread_absolute/price * 100
-            //decimal expectedSpread = _marketStrategyConfig.TradeWhenSpreadGreaterThan;
-
-            //Logger.Info($"Spread absolute / relative: {marketPair.PriceSpread} / {actualSpread:F3}%. Update Id: {marketPair.UpdateTime}.");
-
 
             Logger.Info(string.Format("Spread : {0}", Entry.PriceSpread));
             Logger.Info(string.Format("MediumPrice : {0}", Entry.MediumPrice));
