@@ -1,5 +1,6 @@
 ﻿using Binance.Net;
 using Binance.Net.Objects;
+using Bot.DataProvider;
 using CryptoExchange.Net.Authentication;
 using CryptoExchange.Net.Logging;
 using NLog;
@@ -84,9 +85,36 @@ namespace MaMa.HFT.Console.GlobalShared
 
         public void ObSub()
         {
-            socketClient.SubscribeToBookTickerUpdates(PairLink, HandleBookOffer);
-            socketClient.SubscribeToKlineUpdates(PairLink, KlineInterval.OneMinute, KL1Min);
-            socketClient.SubscribeToSymbolTickerUpdates(PairLink, TT5);
+            //socketClient.SubscribeToBookTickerUpdates(PairLink, HandleBookOffer);
+            //socketClient.SubscribeToKlineUpdates(PairLink, KlineInterval.OneMinute, KL1Min);
+            //socketClient.SubscribeToSymbolTickerUpdates(PairLink, TT5);
+            socketClient.SubscribeToPartialOrderBookUpdates(PairLink,5, 100, TT6);
+
+        }
+
+        private void TT6(BinanceOrderBook obj)
+        {
+            var BestAsk = (List<BinanceOrderBookEntry>)obj.Asks;
+            var BestBid = (List<BinanceOrderBookEntry>)obj.Bids;
+
+            BookEntry Entry = new BookEntry(BestAsk[0].Price, BestBid[0].Price, obj.LastUpdateId);
+
+            //Logger.Info($"Best ask / bid: {BestAsk[0].Price} / {marketPair.Bid.Price}. Update Id: {marketPair.UpdateTime}.");
+
+            //// get price spreads (in percent)
+            //decimal actualSpread = marketPair.PriceSpread.Value / marketPair.MediumPrice.Value * 100; // spread_relative = spread_absolute/price * 100
+            //decimal expectedSpread = _marketStrategyConfig.TradeWhenSpreadGreaterThan;
+
+            //Logger.Info($"Spread absolute / relative: {marketPair.PriceSpread} / {actualSpread:F3}%. Update Id: {marketPair.UpdateTime}.");
+
+
+            Logger.Info(string.Format("Spread : {0}", Entry.PriceSpread));
+            Logger.Info(string.Format("MediumPrice : {0}", Entry.MediumPrice));
+            Logger.Info(string.Format("Ask : {0}", Entry.Ask));
+            Logger.Info(string.Format("Bid : {0}", Entry.Bid));
+
+
+
         }
 
         private void TT5(BinanceStreamTick obj)
