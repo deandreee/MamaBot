@@ -1,3 +1,8 @@
-# MamaBot
-1 - set 2 user env vars named "ApiKey" and "ApiSecret"
-2 - Run
+# MamaBot (Under build)
+
+### Installation
+
+
+Install the dotnet core dependencies.
+* [ApiKey] - Set as local variable (system environement user)
+* [Secret] - Set as local variable (system environement user)
